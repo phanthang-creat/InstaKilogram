@@ -76,13 +76,17 @@ func main() {
 
 	group.POST("/user/update/:id", api.APIUpdateUserById) //Update user
 
-	server.POST("/api/token/refresh", myJwt.RefreshToken) //Refresh token
+	group.GET("/post/:id", post.GetPostByIdPost) //Get post by id
+
+	group.GET("/post/user/:uid", post.GetPostByUid) //Get post by user id
+
+	group.POST("/post/create", post.CreatePost) //Create post
+
+	server.POST("/token/refresh", myJwt.RefreshToken) //Refresh token
 
 	server.POST("/user/register", user.Register) //Register user
 
 	server.POST("/user/login", user.Login) //Login user
-
-	group.POST("/post/create", post.CreatePost) //Create post
 
 	server.Logger.Fatal(server.Start(":5500"))
 }
