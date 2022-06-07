@@ -82,6 +82,12 @@ func main() {
 
 	group.POST("/post/create", post.CreatePost) //Create post
 
+	group.POST("/post/comment/:id", post.CreateComment) //Create comment
+
+	group.GET("/post/comment/:id", post.GetCommentById) //Get comment by id
+
+	group.DELETE("/post/comment/:postId/:commentId", post.DeleteCommentById) //Delete comment by id
+
 	server.POST("/token/refresh", myJwt.RefreshToken) //Refresh token
 
 	server.POST("/user/register", user.Register) //Register user
